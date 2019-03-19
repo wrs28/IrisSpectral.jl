@@ -1,6 +1,6 @@
 module IrisSpectral
 
-using .IrisBase,
+using IrisBase,
 ArnoldiMethod,
 ArnoldiMethodWrapper,
 LinearAlgebra,
