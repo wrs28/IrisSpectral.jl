@@ -29,14 +29,14 @@ include("contour_beyn_progress_bar.jl")
 """
 function eig_kl(sim::Simulation, k::Number, ka::Number=0, kb::Number=0; display::Bool=false, kwargs...)
     A, B, σ = resonance_eigenproblem(sim, k, ka, kb)
-    decomp, history = partialschur(A, B, σ; diag_inv_B=true, kwargs...)
+    λ, ψ, history = partialeigen(A, B, σ; diag_inv_B=true, kwargs...)
     @assert history.converged history
     display ? println(history) : nothing
 
-    decomp.eigenvalues[:] = sqrt.(decomp.eigenvalues[:])
+    k = sqrt.(λ)
     # Normalize wavefunctions according to (ψ₁,ψ₂)=δ₁₂, which requires transformed ε or F
-    normalize!(sim,decomp.Q,B)
-    return decomp.eigenvalues, Array(decomp.Q)
+    normalize!(sim,ψ,B)
+    return k, ψ
 end
 
 

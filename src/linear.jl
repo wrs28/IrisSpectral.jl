@@ -4,7 +4,8 @@
 function resonance_eigenproblem(sim::Simulation, k::Number, ka::Number=0, kb::Number=0)
     N,args = sim.dis.N,(sim.dis.coordinate_system,sim.bnd.∂Ω,sim.bnd.bc,sim.bnd.bl)
     (∇²,fs,s),defs = laplacian(N,args...,k,ka,kb,0)
-    A = spzeros(eltype(∇²[1]),prod(N),prod(N))
+    # A = spzeros(eltype(∇²[1]),prod(N),prod(N))
+    A = spzeros(ComplexF64,prod(N),prod(N))
     for i ∈ eachindex(∇²)
         A += ∇²[i]*fs[i](k,ka,kb)
     end
