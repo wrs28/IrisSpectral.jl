@@ -13,7 +13,7 @@ function NonlinearEigenproblems.contour_beyn(::Type{T},
             radius::Union{Real,Tuple,Array}=1, # integration radius
             quad_method::Symbol=:ptrapz, # which method to run. :quadg, :quadg_parallel, :quadgk, :ptrapz
             N::Integer=1000,  # Nof quadrature nodes
-            errmeasure::Function = NonlinearEigenproblems.default_errmeasure(nep::NEP),
+            # errmeasure::Function = NonlinearEigenproblems.default_errmeasure(nep::NEP),
             sanity_check=true,
             rank_drop_tol=tol # Used in sanity checking
             )where{T<:Number}
